@@ -6,7 +6,7 @@
 void* fun(void*) {
     for(int i=0; i<100; ++i) {
         DEBUGLOG("this is thread in debug %s", "fun");
-        INFOLOG("this is thread in info %s", "fun");
+        ERRORLOG("this is thread in error %s", "fun");
     }    
     return NULL;
 }
@@ -21,7 +21,7 @@ int main() {
 
     for(int i=0; i<100; ++i) {
         DEBUGLOG("test log %s", "debug");
-        INFOLOG("test log %s", "info");
+        ERRORLOG("test log %s", "error");
     }
 
     pthread_join(thread, NULL);
