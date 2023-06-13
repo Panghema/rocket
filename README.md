@@ -39,5 +39,33 @@ Thread id
 ```
 
 Logger 日志器
+```
 1.提供打印日志的方法
 2.提供日志输出的路径
+```
+
+TimerEvent 定时器事件
+```
+1. 指定的时间点 arrive_time
+2. 当此执行后，到下一次执行时间的间隔 interval[ms]
+3. 是否循环 is_repeated
+4. 是否停止 is_cancel
+5. 工作任务 task
+
+取消任务 cencel()
+取消循环 cencelRepeat()
+```
+
+### Timer 定时器
+定时器 是一个TimerEvent的集合
+Timer 继承 FdEvent
+```
+addTimerEvent();
+deleteTimerEvent();
+onTimer(); // 当发生了IO事件之后，需要执行的方法
+
+resetArriveTime()
+
+multimap 存储 TimerEvent <key(arrivetime), TimerEvent>
+
+```

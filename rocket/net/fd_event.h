@@ -15,6 +15,7 @@ public:
 
 
     FdEvent(int fd);
+    FdEvent();
 
     ~FdEvent();
 
