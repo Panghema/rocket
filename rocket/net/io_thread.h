@@ -1,5 +1,5 @@
 #ifndef ROCKET_NET_IO_THREAD_H
-#define ROCKET_NET_TO_THREAD_H
+#define ROCKET_NET_IO_THREAD_H
 
 #include <pthread.h>
 #include <semaphore.h>
