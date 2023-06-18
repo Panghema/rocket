@@ -69,3 +69,17 @@ resetArriveTime()
 multimap 存储 TimerEvent <key(arrivetime), TimerEvent>
 
 ```
+
+IO 线程
+创建一个IO线程，他会帮我们执行：
+1.创建新线程
+2.在新线程里面创建一个eventloop，完成初始化
+3.开启loop
+```
+class {
+
+    pthread_t m_thread;
+    pid_t m_thread_id;
+    Eventloop event_loop; 
+}
+```
