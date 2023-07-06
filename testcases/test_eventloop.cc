@@ -48,7 +48,7 @@ void test_io_thread() {
         int clientfd = accept(listenfd, reinterpret_cast<sockaddr*>(&peer_addr), &peer_len);
 
     
-        DEBUGLOG("success get client [%s:%d]", inet_ntoa(peer_addr.sin_addr), ntohs(peer_addr.sin_port));
+        DEBUGLOG("success get client [%s:%d], fd %d", inet_ntoa(peer_addr.sin_addr), ntohs(peer_addr.sin_port), clientfd);
 
 
     });

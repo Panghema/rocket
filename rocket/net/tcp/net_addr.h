@@ -9,7 +9,6 @@
 namespace rocket {
 
 class NetAddr {
-
 public:
     typedef std::shared_ptr<NetAddr> s_ptr;
 
@@ -21,7 +20,7 @@ public:
 
     virtual std::string toString() = 0;
 
-    virtual bool checkValid();
+    virtual bool checkValid() = 0;
 
 };
 
@@ -43,12 +42,12 @@ public:
 
     std::string toString() ;
 
+public:
     bool checkValid();
 
 private:
-
-    uint16_t m_port {0};
     std::string m_ip;
+    uint16_t m_port {0};
     sockaddr_in m_addr;
 
 

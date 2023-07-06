@@ -35,6 +35,7 @@ void TcpBuffer::writeToBuffer(const char* buf, int size) {
         resizeBuffer(new_size);
     }
     memcpy(&m_buffer[m_write_index], buf, size);
+    m_write_index += size;
     
 }
 
@@ -92,7 +93,8 @@ void TcpBuffer::moveReadIndex(int size) {
 }
 
 void TcpBuffer::moveWriteIndex(int size){
-    if (m_write_index + size >= size) {
+    // DEBUGLOG("************** %d ***************", m_read_index)
+    if (m_write_index + size >= m_size) {
         ERRORLOG("moveWriteIndex error, invalid size %d, old_read_size %d, buffer size %d", size, m_read_index, m_size);
         return;
     }

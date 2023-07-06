@@ -210,6 +210,12 @@ bool EventLoop::isInLoopThread() {
     return thread_id == m_pthread_id;
 }
 
-
+EventLoop* EventLoop::getCurrentEventLoop() {
+    if (t_current_eventloop) {
+        return t_current_eventloop;
+    }
+    t_current_eventloop = new EventLoop();
+    return t_current_eventloop;
+}
 
 }
