@@ -24,7 +24,7 @@ void test_io_thread() {
     sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
 
-    addr.sin_port = htons(12345);
+    addr.sin_port = htons(12346);
     addr.sin_family = AF_INET;
     inet_aton("127.0.0.1", &addr.sin_addr);
 

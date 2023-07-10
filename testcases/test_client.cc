@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include "rocket/common/log.h"
 #include "rocket/common/config.h"
+#include "rocket/net/tcp/net_addr.h"
+#include "rocket/net/tcp/tcp_client.h"
 
 void test_connect() {
     // 调用connect连接server
@@ -26,7 +28,7 @@ void test_connect() {
     memset(&server, 0, sizeof(server));
     server.sin_family = AF_INET;
     inet_aton("127.0.0.1", &server.sin_addr);
-    server.sin_port = htons(12345);
+    server.sin_port = htons(12346);
 
     int rt = connect(fd, reinterpret_cast<sockaddr*>(&server), sizeof(server));
 
@@ -43,11 +45,21 @@ void test_connect() {
 
 }
 
+void test_tcp_client() {
+    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 12346);
+    rocket::TcpClient client(addr);
+    client.connect([addr]() {
+        DEBUGLOG("connect to [%s] success", addr->toString().c_str());
+    });
+     
+}
+
 int main() {
     rocket::Config::SetGlobalConfig("./conf/rocket.xml");
     rocket::Logger::InitGlobalLogger();
 
-    test_connect();
+    // test_connect();
+    test_tcp_client();
 
     return 0;
 }

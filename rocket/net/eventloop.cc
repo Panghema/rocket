@@ -106,6 +106,7 @@ void EventLoop::initWakeUpFdEvent() {
 }
 
 void EventLoop::loop() {
+    m_is_looping = true;
     while(!m_stop_flag) {
         // 先取出所有任务
         ScopeMutex<Mutex> lock(m_mutex);
@@ -216,6 +217,10 @@ EventLoop* EventLoop::getCurrentEventLoop() {
     }
     t_current_eventloop = new EventLoop();
     return t_current_eventloop;
+}
+
+bool EventLoop::isLooping() {
+    return m_is_looping;
 }
 
 }
