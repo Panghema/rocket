@@ -2,6 +2,7 @@
 #include "rocket/net/tcp/tcp_connection.h"
 #include "rocket/net/fd_event_group.h"
 #include "rocket/common/log.h"
+#include "rocket/net/coder/tinypb_coder.h"
 
 namespace rocket {
 
@@ -15,7 +16,7 @@ TcpConnection::TcpConnection(EventLoop* event_loop, int fd, int buffer_size, Net
         m_fd_event = FdEventGroup::getFdEventGroup()->getFdEvent(fd); 
         m_fd_event->setNonBlock();
 
-        m_coder = new StringCoder();
+        m_coder = new TinyPBCoder();
         if (m_connection_type == TcpConnectionByServer) {
             listenRead();
         }
@@ -88,27 +89,32 @@ void TcpConnection::onRead() {
 void TcpConnection::excute() {
     if (m_connection_type == TcpConnectionByServer) {
         // 将rpc请求执行业务逻辑，获取rpc相应，在把rpc响应发送回去
-        std::vector<char> tmp;
-        int size = m_in_buffer->readAble();
-        tmp.resize(size);
+        std::vector<AbstractProtocol::s_ptr> result;
+        std::vector<AbstractProtocol::s_ptr> reply_messages;
+        m_coder->decode(result, m_in_buffer);
+        for (size_t i=0; i<result.size(); ++i) {
+            // 服务端该这么做
+            // 针对每个请求，调用rpc方法获取响应message。
+            // 将响应message放入到发送缓冲区，监听可写事件回包
+            INFOLOG("success get request [%s] from client[%s]", result[i]->m_req_id.c_str(), m_peer_addr->toString().c_str());
+            
+            std::shared_ptr<TinyPBProtocol> message = std::make_shared<TinyPBProtocol>();
+            message->m_pb_data = "hello. this is rocket rpc test data";
+            message->m_req_id = result[i]->m_req_id;
+            reply_messages.emplace_back(message);
+            // m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
 
-        m_in_buffer->readFromBuffer(tmp, size);
-        std::string msg = "";
-        for (size_t i=0; i<tmp.size(); ++i) {
-            msg += tmp[i];
         }
 
-        INFOLOG("success get request [%s] from client[%s]", msg.c_str(), m_peer_addr->toString().c_str());
-
-        m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
+        m_coder->encode(reply_messages, m_out_buffer);
 
         listenWrite();
     } else {
         // 从buffer里decode解码，得到message对象，判断是否req_id相等，相等则读成功，执行回调
         std::vector<AbstractProtocol::s_ptr> result;
-        m_coder->decoder(result, m_in_buffer);
+        m_coder->decode(result, m_in_buffer);
         for (size_t i=0; i<result.size(); ++i) {
-            std::string req_id = result[i]->getReqId();
+            std::string req_id = result[i]->m_req_id;
             auto it = m_read_dones.find(req_id);
             if (it != m_read_dones.end()) {
                 it->second(result[i]); // 用shared_from_this，必须要确保构造的时候就是智能指针
@@ -132,7 +138,7 @@ void TcpConnection::TcpConnection::onWrite() {
         for (size_t i=0; i<m_write_dones.size(); ++i) {
             messages.push_back(m_write_dones[i].first);
         }
-        m_coder->encoder(messages, m_out_buffer);
+        m_coder->encode(messages, m_out_buffer);
     }
 
     bool is_write_all = false;

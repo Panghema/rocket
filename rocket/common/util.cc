@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <sys/syscall.h>
 #include <sys/time.h>
+#include <string.h>
+#include <arpa/inet.h>
 #include "rocket/common/util.h"
 
 namespace rocket {
@@ -28,6 +30,12 @@ int64_t getTimeStamp() {
     gettimeofday(&val, NULL);
 
     return val.tv_sec * 1000 + val.tv_usec / 1000;
+}
+
+int32_t getInt32FromNetByte(const char* buf) {
+    int32_t re;
+    memcpy(&re, buf, sizeof(re));
+    return ntohl(re);
 }
 
 }
