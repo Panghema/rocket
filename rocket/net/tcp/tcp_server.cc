@@ -37,7 +37,7 @@ namespace rocket
         // 任意一个线程
         // m_io_thread_group->getIOThread()->getEventLoop()->addEpollEvent();
         IOThread *io_thread = m_io_thread_group->getIOThread();
-        TcpConnection::s_ptr connection = std::make_shared<TcpConnection>(io_thread->getEventLoop(), client_fd, 128, peer_addr, TcpConnectionByServer);
+        TcpConnection::s_ptr connection = std::make_shared<TcpConnection>(io_thread->getEventLoop(), client_fd, 128, peer_addr, m_local_addr, TcpConnectionByServer);
         connection->setState(Connected);
         m_client.insert(connection);
         INFOLOG("TcpServer succ get client, fd=%d", client_fd);

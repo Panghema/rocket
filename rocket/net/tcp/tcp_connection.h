@@ -8,7 +8,8 @@
 #include "rocket/net/tcp/tcp_buffer.h"
 #include "rocket/net/io_thread.h"
 #include "rocket/net/coder/string_coder.h"
-#include "rocket/net/coder/tinypb_coder.h""
+#include "rocket/net/coder/tinypb_coder.h"
+#include "rocket/net/rpc/rpc_dispatcher.h"
 
 namespace rocket {
 
@@ -28,7 +29,7 @@ class TcpConnection {
 
 public:
     typedef std::shared_ptr<TcpConnection> s_ptr;
-    TcpConnection(EventLoop* event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, TcpConnectionType type=TcpConnectionByServer);
+    TcpConnection(EventLoop* event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, NetAddr::s_ptr local_addr, TcpConnectionType type=TcpConnectionByServer);
 
     ~TcpConnection();
 
@@ -60,6 +61,9 @@ public:
     
     void pushReadMessage(const std::string& req_id, std::function<void(AbstractProtocol::s_ptr)> done);
 
+    IPNetAddr::s_ptr getLocalAddr();
+
+    IPNetAddr::s_ptr getPeerAddr();
 private:
     EventLoop* m_event_loop {NULL};
     // IOThread* m_io_thread {NULL}; // 代表持有该连接的io线程方便当前指向的操作线程
@@ -82,6 +86,8 @@ private:
     std::map<std::string, std::function<void(AbstractProtocol::s_ptr)>> m_read_dones;
     
     AbstractCoder* m_coder {NULL};
+
+    std::shared_ptr<RpcDispatcher> m_dispatcher;
 };
 
 
