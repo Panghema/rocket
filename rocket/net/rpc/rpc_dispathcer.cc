@@ -12,9 +12,16 @@
 #include "rocket/net/rpc/rpc_dispatcher.h"
 
 namespace  rocket
-
-
 {
+static RpcDispatcher* g_rpc_dispatcher = NULL;
+RpcDispatcher* RpcDispatcher::getRpcDispatcher() {
+    if (g_rpc_dispatcher != NULL) {
+        return g_rpc_dispatcher;
+    }
+    g_rpc_dispatcher = new RpcDispatcher();
+    return g_rpc_dispatcher;
+}
+
 void RpcDispatcher::dispatch(AbstractProtocol::s_ptr request, AbstractProtocol::s_ptr response, TcpConnection* connection) {
     std::shared_ptr<TinyPBProtocol> req_protocol = std::dynamic_pointer_cast<TinyPBProtocol>(request);
     std::shared_ptr<TinyPBProtocol> rsp_protocol = std::dynamic_pointer_cast<TinyPBProtocol>(response);
@@ -26,10 +33,11 @@ void RpcDispatcher::dispatch(AbstractProtocol::s_ptr request, AbstractProtocol::
     rsp_protocol->m_req_id = req_protocol->m_req_id;
     rsp_protocol->m_method_name = req_protocol->m_method_name;
 
-    if (parseServiceFullName(method_full_name, service_name, method_name)) {
+    if (!parseServiceFullName(method_full_name, service_name, method_name)) {
         setTinyPBError(rsp_protocol, ERROR_PARSE_SERVICE_NAME, "parse service name error");
         return;
     }
+
     auto it = m_service_map.find(service_name);
     if (it == m_service_map.end()) {
         ERRORLOG("%s | service name[%s] not found", req_protocol->m_req_id.c_str(), service_name.c_str());
@@ -39,6 +47,7 @@ void RpcDispatcher::dispatch(AbstractProtocol::s_ptr request, AbstractProtocol::
 
     service_s_ptr service = (*it).second;
     const google::protobuf::MethodDescriptor* method = service->GetDescriptor()->FindMethodByName(method_name);
+    DEBUGLOG("%s", method_name.c_str());
     if (method == NULL) {
         ERRORLOG("%s | method name[%s] not found in service[%s]", req_protocol->m_req_id.c_str(), method_name.c_str(), service_name.c_str());
         setTinyPBError(rsp_protocol, ERROR_METHOD_NOT_FOUND, "method not found");
@@ -67,7 +76,7 @@ void RpcDispatcher::dispatch(AbstractProtocol::s_ptr request, AbstractProtocol::
     rpcController.SetReqId(req_protocol->m_req_id);
     service->CallMethod(method, &rpcController, req_msg, rsp_msg, NULL); // controller callback
     
-    if (rsp_msg->SerializeToString(&(rsp_protocol->m_pb_data))) {
+    if (!rsp_msg->SerializeToString(&(rsp_protocol->m_pb_data))) {
         ERRORLOG("%s | serilize error, origin message [%s]", req_protocol->m_req_id.c_str(), rsp_msg->ShortDebugString().c_str());
         setTinyPBError(rsp_protocol, ERROR_FAILED_SERIALIZE, "serilize error");
         if (req_msg != NULL) {
@@ -92,7 +101,7 @@ void RpcDispatcher::dispatch(AbstractProtocol::s_ptr request, AbstractProtocol::
     rsp_msg = NULL;
 }
 
-bool RpcDispatcher::parseServiceFullName(const std::string full_name, std::string& service_name, std::string method_name) {
+bool RpcDispatcher::parseServiceFullName(const std::string full_name, std::string& service_name, std::string& method_name) {
     if (full_name.empty()) {
         ERRORLOG("full name empty");
         return false;

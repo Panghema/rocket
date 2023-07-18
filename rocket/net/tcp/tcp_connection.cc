@@ -19,7 +19,6 @@ TcpConnection::TcpConnection(EventLoop* event_loop, int fd, int buffer_size, Net
         m_coder = new TinyPBCoder();
         if (m_connection_type == TcpConnectionByServer) {
             listenRead();
-            m_dispatcher = std::make_shared<RpcDispatcher>();
         }
 }
 
@@ -102,7 +101,8 @@ void TcpConnection::excute() {
             std::shared_ptr<TinyPBProtocol> message = std::make_shared<TinyPBProtocol>();
             // message->m_pb_data = "hello. this is rocket rpc test data";
             // message->m_req_id = result[i]->m_req_id;
-            m_dispatcher->dispatch(result[i], message, this);
+
+            RpcDispatcher::getRpcDispatcher()->dispatch(result[i], message, this);
             reply_messages.emplace_back(message);
             // m_out_buffer->writeToBuffer(msg.c_str(), msg.length());
 
