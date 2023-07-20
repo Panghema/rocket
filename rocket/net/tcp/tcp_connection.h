@@ -59,7 +59,7 @@ public:
 
     void pushSendMessage(AbstractProtocol::s_ptr message, std::function<void(AbstractProtocol::s_ptr)> done);
     
-    void pushReadMessage(const std::string& req_id, std::function<void(AbstractProtocol::s_ptr)> done);
+    void pushReadMessage(const std::string& msg_id, std::function<void(AbstractProtocol::s_ptr)> done);
 
     IPNetAddr::s_ptr getLocalAddr();
 
