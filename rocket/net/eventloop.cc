@@ -153,6 +153,18 @@ void EventLoop::loop() {
                     DEBUGLOG("fd %d trigger EPOLLOUT event", fd_event->getFd())
                     addTask(fd_event->handler(FdEvent::OUT_EVENT));
                 }
+
+                // if(!EPOLLIN && !EPOLLOUT) {
+                //     DEBUGLOG("unknown event");
+                // }
+                if (trigger_event.events & EPOLLERR) {
+                    DEBUGLOG("fd %d trigger EPOLLERR event", fd_event->getFd())
+                    // 删除出错套接字
+                    deleteEpollEvent(fd_event);
+                    if (fd_event->handler(FdEvent::OUT_EVENT) != nullptr) {
+                        addTask(fd_event->handler(FdEvent::OUT_EVENT));
+                    }
+                }
             }
         }
     }

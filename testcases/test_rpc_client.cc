@@ -28,6 +28,7 @@ void test_tcp_client() {
     rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 12346);
     rocket::TcpClient client(addr);
     client.connect([addr, &client]() {
+        INFOLOG("1");
         DEBUGLOG("connect to [%s] success", addr->toString().c_str());
         std::shared_ptr<rocket::TinyPBProtocol> message = std::make_shared<rocket::TinyPBProtocol>();
         message->m_msg_id="99998888";

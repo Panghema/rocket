@@ -217,12 +217,12 @@ void TcpConnection::setConnectionType(TcpConnectionType type) {
 }
 
 void TcpConnection::listenWrite() {
-    m_fd_event->listen(FdEvent::OUT_EVENT, std::bind(&TcpConnection::onWrite, this));
+    m_fd_event->listen(FdEvent::OUT_EVENT, std::bind(&TcpConnection::onWrite, this), nullptr);
     m_event_loop->addEpollEvent(m_fd_event);
 }
 
 void TcpConnection::listenRead() {
-    m_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpConnection::onRead, this));
+    m_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpConnection::onRead, this), nullptr);
     m_event_loop->addEpollEvent(m_fd_event);
 }
 

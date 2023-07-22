@@ -53,7 +53,7 @@ namespace rocket
 
         m_listen_fd_event = new FdEvent(m_acceptor->getListenFd());
 
-        m_listen_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpServer::onAccept, this));
+        m_listen_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpServer::onAccept, this), nullptr);
         m_main_event_loop->addEpollEvent(m_listen_fd_event);
     }
 

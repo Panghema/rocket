@@ -13,7 +13,7 @@ Timer::Timer() : FdEvent() {
     DEBUGLOG("timer fd=%d", m_fd);
     
     // 把fd的可读事件放到了eventloop上监听
-    listen(FdEvent::IN_EVENT, std::bind(&Timer::onTimer, this));
+    listen(FdEvent::IN_EVENT, std::bind(&Timer::onTimer, this), nullptr);
     
 
 }
