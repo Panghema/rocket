@@ -76,12 +76,23 @@ void test_channel() {
     std::shared_ptr<rocket::RpcController> controller = std::make_shared<rocket::RpcController>();
     controller->SetMsgId(util.genMsgID());
 
-    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel]() mutable {
-        INFOLOG("call rpc success, request[%s], response[%s]", request->ShortDebugString().c_str(), response->ShortDebugString().c_str());
+    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel, controller]() mutable {
+        if (controller->GetErrorCode() == 0) {
+            INFOLOG("call rpc success, request[%s], response[%s]", request->ShortDebugString().c_str(), response->ShortDebugString().c_str());
+            // client自己的业务逻辑， 得到了response的xx，就xxx
+            if (response->order_id() == "xx") {
+                // do xxx
+            }
+        } else {
+            ERRORLOG("call rpc failed, request[%s], error code[%d], error info[%s]", 
+                request->ShortDebugString().c_str(), controller->GetErrorCode(), controller->GetErrorInfo().c_str());
+        }
         INFOLOG("now exit eventloop");
         channel->getTcpClient()->stop();
         channel.reset();
     });
+
+    controller->SetTimeOut(10000);
 
     channel->Init(controller, request, response, closure);
 

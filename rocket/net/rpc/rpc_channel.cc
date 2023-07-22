@@ -9,6 +9,7 @@
 #include "rocket/net/rpc/rpc_controller.h"
 #include "rocket/common/log.h"
 #include "rocket/common/error_code.h"
+#include "rocket/net/timer_event.h"
 
 namespace rocket
 {
@@ -60,9 +61,19 @@ void RpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
 
     s_ptr channel = shared_from_this();
 
+    m_timer_event = std::make_shared<TimerEvent>(my_controller->GetTimeOut(), false, [my_controller, channel]() mutable {
+        my_controller->StartCancel();
+        my_controller->SetError(ERROR_RPC_CALL_TIMEOUT, "rpc call timeout "+std::to_string(my_controller->GetTimeOut())+"ms");
+
+        if (channel->getClosure()) {
+            channel->getClosure()->Run();
+        }
+        channel.reset();
+    });
+    m_client->addTimerEvent(m_timer_event);
+
     m_client->connect([req_protocol, channel]() mutable {
         RpcController* my_controller = dynamic_cast<RpcController*>(channel->getController());
-        DEBUGLOG(">");
 
         if (channel->getTcpClient()->getConnectErrorCode() != 0) {
             my_controller->SetError(channel->getTcpClient()->getConnectErrorCode(), channel->getTcpClient()->getConnectErrorInfo());
@@ -88,6 +99,9 @@ void RpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                     channel->getTcpClient()->getPeerAddr()->toString().c_str(),
                     channel->getTcpClient()->getLocalAddr()->toString().c_str());
                 
+                //  当成功读取到回包后取消定时器
+                channel->getTimerEvent()->setCancel(true);
+
                 if (!channel->getResponse()->ParseFromString(rsp_protocol->m_pb_data)) {
                     ERRORLOG("%s | deserialize error", rsp_protocol->m_msg_id);
                     my_controller->SetError(ERROR_FAILED_SERIALIZE, "deserialize error");
@@ -107,7 +121,9 @@ void RpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                     channel->getTcpClient()->getPeerAddr()->toString().c_str(),
                     channel->getTcpClient()->getLocalAddr()->toString().c_str());
 
-                if (channel->getClosure()) {
+
+
+                if (!my_controller->IsCanceled() && channel->getClosure()) {
                     channel->getClosure()->Run();
                 }
 
@@ -147,6 +163,10 @@ google::protobuf::Closure* RpcChannel::getClosure() {
 
 TcpClient* RpcChannel::getTcpClient() {
     return m_client.get();
+}
+
+TimerEvent::s_ptr RpcChannel::getTimerEvent() {
+    return m_timer_event;
 }
 
 } // namespace rocket
