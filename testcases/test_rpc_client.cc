@@ -63,18 +63,18 @@ void test_tcp_client() {
 }
 
 void test_channel() {
-    rocket::IPNetAddr::s_ptr addr = std::make_shared<rocket::IPNetAddr>("127.0.0.1", 12346);
-    std::shared_ptr<rocket::RpcChannel> channel = std::make_shared<rocket::RpcChannel>(addr);
+    NEWRPCCHANNEL("127.0.0.1:12346", channel);
     
-    std::shared_ptr<makeOrderRequest> request = std::make_shared<makeOrderRequest>();
+    NEWMESSAGE(makeOrderRequest, request);
+    NEWMESSAGE(makeOrderResponse, response);
+
     request->set_price(100);
     request->set_good("apple");
-
-    std::shared_ptr<makeOrderResponse> response = std::make_shared<makeOrderResponse>();
     
     rocket::MsgIDUtil util;
-    std::shared_ptr<rocket::RpcController> controller = std::make_shared<rocket::RpcController>();
+    NEWRPCCONTROLLER(controller);
     controller->SetMsgId(util.genMsgID());
+    controller->SetTimeOut(10000);
 
     std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel, controller]() mutable {
         if (controller->GetErrorCode() == 0) {
@@ -92,13 +92,9 @@ void test_channel() {
         channel.reset();
     });
 
-    controller->SetTimeOut(10000);
 
-    channel->Init(controller, request, response, closure);
+    CALLRPC("127.0.0.1:12346", Order_Stub, makeOrder, controller, request, response, closure);
 
-    Order_Stub stub(channel.get());
-
-    stub.makeOrder(controller.get(), request.get(), response.get(), closure.get());
 }
 
 int main() {
