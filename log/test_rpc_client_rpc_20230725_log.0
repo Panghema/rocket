@@ -1,0 +1,32 @@
+[DEBUG]	[23-07-25 23:09:52.279]	[3967371:3967371]	[rocket/net/timer_event.cc:10]	success create timer event, will excute at [1690297792779]
+[DEBUG]	[23-07-25 23:09:52.279]	[3967371:3967371]	[rocket/net/eventloop.cc:190]	add event success, fd[4]
+[DEBUG]	[23-07-25 23:09:52.279]	[3967371:3967371]	[rocket/net/timer.cc:13]	timer fd=5
+[DEBUG]	[23-07-25 23:09:52.279]	[3967371:3967371]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-25 23:09:52.279]	[3967371:3967371]	[rocket/net/eventloop.cc:190]	add event success, fd[5]
+[INFO]	[23-07-25 23:09:52.279]	[3967371:3967371]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 3967371
+[INFO]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/rpc/rpc_channel.cc:44]	08249724171083284536 | call method name [Order.makeOrder]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/timer_event.cc:10]	success create timer event, will excute at [1690297802280]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/tcp/tcp_client.cc:53]	connect [127.0.0.1:12346] success
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/eventloop.cc:204]	delete event success, fd[8]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/tcp/tcp_client.cc:89]	now begin to done
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/rpc/rpc_channel.cc:148]	getController()
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:145]	msg_id = 08249724171083284536
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:147]	pk_len = 70
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:214]	encode message[08249724171083284536] success
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/tcp/tcp_connection.cc:158]	no data need to be sent to client [127.0.0.1:12346]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[INFO]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/rpc/rpc_channel.cc:90]	08249724171083284536 | send request success, method_name[Order.makeOrder], peer_addr[127.0.0.1:12346], local_addr[127.0.0.1:54190]
+[DEBUG]	[23-07-25 23:09:52.280]	[3967371:3967371]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/tcp/tcp_connection.cc:52]	success read 71 bytes from addr[127.0.0.1:12346], clientfd[8]
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:48]	get pk_len = 71
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:81]	parse msg_id_len=20
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:87]	parse msg_id=08249724171083284536
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:101]	parse method_name=Order.makeOrder
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:123]	parse error_info=
+[DEBUG]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/coder/tinypb_coder.cc:65]	decode end, read all buffer data
+[INFO]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/rpc/rpc_channel.cc:97]	08249724171083284536 |  success get rpc response, call method name[Order.makeOrder], peer_addr[127.0.0.1:12346], local_addr[127.0.0.1:54190]
+[INFO]	[23-07-25 23:09:57.281]	[3967371:3967371]	[rocket/net/rpc/rpc_channel.cc:119]	08249724171083284536 | call rps success, call method name[Order.makeOrder], peer_addr[127.0.0.1:12346], local_addr[127.0.0.1:54190]
+[INFO]	[23-07-25 23:09:57.281]	[3967371:3967371]	[testcases/test_rpc_client.cc:81]	call rpc success, request[price: 100 good: "apple"], response[order_id: "20230718"]
+[INFO]	[23-07-25 23:09:57.281]	[3967371:3967371]	[testcases/test_rpc_client.cc:90]	now exit eventloop

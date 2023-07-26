@@ -1,0 +1,3 @@
+[DEBUG]	[23-07-25 23:09:52.281]	[3967343:3967346]	[08249724171083284536]	[makeOrder]	[testcases/test_rpc_server.cc:29]	start sleep 5s
+[DEBUG]	[23-07-25 23:09:57.281]	[3967343:3967346]	[08249724171083284536]	[makeOrder]	[testcases/test_rpc_server.cc:31]	end sleep
+[DEBUG]	[23-07-25 23:09:57.281]	[3967343:3967346]	[08249724171083284536]	[makeOrder]	[testcases/test_rpc_server.cc:38]	call makeOrder success

@@ -1,0 +1,139 @@
+[DEBUG]	[23-07-26 21:50:13.833]	[343728:343728]	[rocket/net/timer_event.cc:10]	success create timer event, will excute at [1690379414333]
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343728]	[rocket/net/eventloop.cc:190]	add event success, fd[4]
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343728]	[rocket/net/timer.cc:13]	timer fd=5
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343728]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343728]	[rocket/net/eventloop.cc:190]	add event success, fd[5]
+[INFO]	[23-07-26 21:50:13.834]	[343728:343728]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 343728
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343728]	[testcases/test_rpc_server.cc:59]	create addr 127.0.0.1:12345
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343731]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343731]	[rocket/net/timer.cc:13]	timer fd=9
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343731]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343731]	[rocket/net/eventloop.cc:190]	add event success, fd[9]
+[INFO]	[23-07-26 21:50:13.834]	[343728:343731]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 343731
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343731]	[rocket/net/io_thread.cc:49]	IOThread 343731 created, wait start semaphore
+[DEBUG]	[23-07-26 21:50:13.834]	[343728:343728]	[rocket/net/io_thread.cc:19]	IOThread [343731] create successfully
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/eventloop.cc:190]	add event success, fd[11]
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/timer.cc:13]	timer fd=12
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/eventloop.cc:190]	add event success, fd[12]
+[INFO]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 343732
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/io_thread.cc:49]	IOThread 343732 created, wait start semaphore
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343728]	[rocket/net/io_thread.cc:19]	IOThread [343732] create successfully
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343728]	[rocket/net/tcp/tcp_server.cc:57]	TcpServer::init()
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343728]	[rocket/net/eventloop.cc:190]	add event success, fd[6]
+[INFO]	[23-07-26 21:50:13.835]	[343728:343728]	[rocket/net/tcp/tcp_server.cc:14]	rocket TcpServer listen successfully on [127.0.0.1:12345]
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343728]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 343731
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343728]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 343732
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343731]	[rocket/net/io_thread.cc:51]	IOThread 343731 start loop
+[DEBUG]	[23-07-26 21:50:13.835]	[343728:343732]	[rocket/net/io_thread.cc:51]	IOThread 343732 start loop
+[DEBUG]	[23-07-26 21:50:50.86]	[344158:344158]	[rocket/net/timer_event.cc:10]	success create timer event, will excute at [1690379450586]
+[DEBUG]	[23-07-26 21:50:50.86]	[344158:344158]	[rocket/net/eventloop.cc:190]	add event success, fd[4]
+[DEBUG]	[23-07-26 21:50:50.86]	[344158:344158]	[rocket/net/timer.cc:13]	timer fd=5
+[DEBUG]	[23-07-26 21:50:50.86]	[344158:344158]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:50:50.86]	[344158:344158]	[rocket/net/eventloop.cc:190]	add event success, fd[5]
+[INFO]	[23-07-26 21:50:50.86]	[344158:344158]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 344158
+[DEBUG]	[23-07-26 21:50:50.86]	[344158:344158]	[testcases/test_rpc_server.cc:59]	create addr 127.0.0.1:12345
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/timer.cc:13]	timer fd=9
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/eventloop.cc:190]	add event success, fd[9]
+[INFO]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 344161
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/io_thread.cc:49]	IOThread 344161 created, wait start semaphore
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/io_thread.cc:19]	IOThread [344161] create successfully
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/eventloop.cc:190]	add event success, fd[11]
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/timer.cc:13]	timer fd=12
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/eventloop.cc:190]	add event success, fd[12]
+[INFO]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 344162
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/io_thread.cc:49]	IOThread 344162 created, wait start semaphore
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/io_thread.cc:19]	IOThread [344162] create successfully
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/tcp/tcp_server.cc:57]	TcpServer::init()
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/eventloop.cc:190]	add event success, fd[6]
+[INFO]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/tcp/tcp_server.cc:14]	rocket TcpServer listen successfully on [127.0.0.1:12345]
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 344161
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344158]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 344162
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344161]	[rocket/net/io_thread.cc:51]	IOThread 344161 start loop
+[DEBUG]	[23-07-26 21:50:50.87]	[344158:344162]	[rocket/net/io_thread.cc:51]	IOThread 344162 start loop
+[DEBUG]	[23-07-26 21:56:40.510]	[346606:346606]	[rocket/net/timer_event.cc:10]	success create timer event, will excute at [1690379801010]
+[DEBUG]	[23-07-26 21:56:40.510]	[346606:346606]	[rocket/net/eventloop.cc:190]	add event success, fd[4]
+[DEBUG]	[23-07-26 21:56:40.510]	[346606:346606]	[rocket/net/timer.cc:13]	timer fd=5
+[DEBUG]	[23-07-26 21:56:40.510]	[346606:346606]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:56:40.510]	[346606:346606]	[rocket/net/eventloop.cc:190]	add event success, fd[5]
+[INFO]	[23-07-26 21:56:40.510]	[346606:346606]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 346606
+[DEBUG]	[23-07-26 21:56:40.510]	[346606:346606]	[testcases/test_rpc_server.cc:59]	create addr 127.0.0.1:12345
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/timer.cc:13]	timer fd=9
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/eventloop.cc:190]	add event success, fd[9]
+[INFO]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 346609
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/io_thread.cc:49]	IOThread 346609 created, wait start semaphore
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/io_thread.cc:19]	IOThread [346609] create successfully
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/eventloop.cc:190]	add event success, fd[11]
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/timer.cc:13]	timer fd=12
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/eventloop.cc:190]	add event success, fd[12]
+[INFO]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 346610
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/io_thread.cc:49]	IOThread 346610 created, wait start semaphore
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/io_thread.cc:19]	IOThread [346610] create successfully
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/tcp/tcp_server.cc:57]	TcpServer::init()
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/eventloop.cc:190]	add event success, fd[6]
+[INFO]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/tcp/tcp_server.cc:14]	rocket TcpServer listen successfully on [127.0.0.1:12345]
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 346609
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346606]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 346610
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346609]	[rocket/net/io_thread.cc:51]	IOThread 346609 start loop
+[DEBUG]	[23-07-26 21:56:40.511]	[346606:346610]	[rocket/net/io_thread.cc:51]	IOThread 346610 start loop
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346878]	[rocket/net/timer_event.cc:10]	success create timer event, will excute at [1690379823436]
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346878]	[rocket/net/eventloop.cc:190]	add event success, fd[4]
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346878]	[rocket/net/timer.cc:13]	timer fd=5
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346878]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346878]	[rocket/net/eventloop.cc:190]	add event success, fd[5]
+[INFO]	[23-07-26 21:57:02.936]	[346878:346878]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 346878
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346878]	[testcases/test_rpc_server.cc:59]	create addr 127.0.0.1:12346
+[DEBUG]	[23-07-26 21:57:02.936]	[346878:346881]	[rocket/net/eventloop.cc:190]	add event success, fd[8]
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346881]	[rocket/net/timer.cc:13]	timer fd=9
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346881]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346881]	[rocket/net/eventloop.cc:190]	add event success, fd[9]
+[INFO]	[23-07-26 21:57:02.937]	[346878:346881]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 346881
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346881]	[rocket/net/io_thread.cc:49]	IOThread 346881 created, wait start semaphore
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/io_thread.cc:19]	IOThread [346881] create successfully
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/eventloop.cc:190]	add event success, fd[11]
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/timer.cc:13]	timer fd=12
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/eventloop.cc:82]	EventLoop::initTimer()
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/eventloop.cc:190]	add event success, fd[12]
+[INFO]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/eventloop.cc:63]	succ create eventloop in thread 346882
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/io_thread.cc:49]	IOThread 346882 created, wait start semaphore
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/io_thread.cc:19]	IOThread [346882] create successfully
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/tcp/tcp_server.cc:57]	TcpServer::init()
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/eventloop.cc:190]	add event success, fd[6]
+[INFO]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/tcp/tcp_server.cc:14]	rocket TcpServer listen successfully on [127.0.0.1:12346]
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 346881
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346878]	[rocket/net/io_thread.cc:63]	Now invoke IOThread 346882
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346881]	[rocket/net/io_thread.cc:51]	IOThread 346881 start loop
+[DEBUG]	[23-07-26 21:57:02.937]	[346878:346882]	[rocket/net/io_thread.cc:51]	IOThread 346882 start loop
+[INFO]	[23-07-26 21:57:04.515]	[346878:346878]	[rocket/net/tcp/tcp_acceptor.cc:64]	A client have been accepted succ, peer addr [127.0.0.1:54204]
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346878]	[rocket/net/tcp/tcp_server.cc:34]	TcpServer succ get client, fd=14
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346878]	[rocket/net/wakeup_fd_event.cc:24]	success read 8 bytes
+[INFO]	[23-07-26 21:57:04.515]	[346878:346878]	[rocket/net/tcp/tcp_server.cc:43]	TcpServer succ get client, fd=14
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/eventloop.cc:193]	add event success, fd[14]
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/eventloop.cc:102]	read full bytes from wakeup fd[8]
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/tcp/tcp_connection.cc:52]	success read 70 bytes from addr[127.0.0.1:54204], clientfd[14]
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/coder/tinypb_coder.cc:48]	get pk_len = 70
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/coder/tinypb_coder.cc:81]	parse msg_id_len=20
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/coder/tinypb_coder.cc:87]	parse msg_id=46163393265149956733
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/coder/tinypb_coder.cc:101]	parse method_name=Order.makeOrder
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/coder/tinypb_coder.cc:123]	parse error_info=
+[DEBUG]	[23-07-26 21:57:04.515]	[346878:346881]	[rocket/net/coder/tinypb_coder.cc:65]	decode end, read all buffer data
+[INFO]	[23-07-26 21:57:04.516]	[346878:346881]	[rocket/net/tcp/tcp_connection.cc:99]	success get request [46163393265149956733] from client[127.0.0.1:54204]
+[INFO]	[23-07-26 21:57:04.516]	[346878:346881]	[rocket/net/rpc/rpc_dispathcer.cc:120]	parse service_name[Order], and method_name[makeOrder] from full_name[Order.makeOrder]
+[DEBUG]	[23-07-26 21:57:04.516]	[346878:346881]	[rocket/net/rpc/rpc_dispathcer.cc:51]	makeOrder
+[INFO]	[23-07-26 21:57:04.516]	[346878:346881]	[rocket/net/rpc/rpc_dispathcer.cc:70]	msg_id[46163393265149956733], get rpc request[price: 100 good: "apple"]
+[INFO]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/rpc/rpc_dispathcer.cc:99]	46163393265149956733 | dispatch succ, request[price: 100 good: "apple"], response[order_id: "20230718"]
+[DEBUG]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/coder/tinypb_coder.cc:145]	msg_id = 46163393265149956733
+[DEBUG]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/coder/tinypb_coder.cc:147]	pk_len = 71
+[DEBUG]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/coder/tinypb_coder.cc:214]	encode message[46163393265149956733] success
+[DEBUG]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/eventloop.cc:190]	add event success, fd[14]
+[DEBUG]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/tcp/tcp_connection.cc:158]	no data need to be sent to client [127.0.0.1:54204]
+[DEBUG]	[23-07-26 21:57:09.516]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/eventloop.cc:190]	add event success, fd[14]
+[DEBUG]	[23-07-26 21:57:23.417]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/tcp/tcp_connection.cc:52]	success read 0 bytes from addr[127.0.0.1:54204], clientfd[14]
+[INFO]	[23-07-26 21:57:23.417]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/tcp/tcp_connection.cc:75]	peer closed, peer addr [127.0.0.1:54204], client [14]
+[DEBUG]	[23-07-26 21:57:23.417]	[346878:346881]	[46163393265149956733]	[makeOrder]	[rocket/net/eventloop.cc:204]	delete event success, fd[14]

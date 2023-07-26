@@ -10,6 +10,7 @@
 
 #include "rocket/net/tcp/tcp_connection.h"
 #include "rocket/net/rpc/rpc_dispatcher.h"
+#include "rocket/common/runtime.h"
 
 namespace  rocket
 {
@@ -74,6 +75,9 @@ void RpcDispatcher::dispatch(AbstractProtocol::s_ptr request, AbstractProtocol::
     rpcController.SetLocalAddr(connection->getLocalAddr());
     rpcController.SetPeerAddr(connection->getPeerAddr());
     rpcController.SetMsgId(req_protocol->m_msg_id);
+
+    RunTime::GetRunTime()->m_msgid = req_protocol->m_msg_id;
+    RunTime::GetRunTime()->m_method_name = method_name;
     service->CallMethod(method, &rpcController, req_msg, rsp_msg, NULL); // controller callback
     
     if (!rsp_msg->SerializeToString(&(rsp_protocol->m_pb_data))) {

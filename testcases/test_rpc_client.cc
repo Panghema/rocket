@@ -88,7 +88,7 @@ void test_channel() {
                 request->ShortDebugString().c_str(), controller->GetErrorCode(), controller->GetErrorInfo().c_str());
         }
         INFOLOG("now exit eventloop");
-        channel->getTcpClient()->stop();
+        // channel->getTcpClient()->stop();
         channel.reset();
     });
 
@@ -98,8 +98,8 @@ void test_channel() {
 }
 
 int main() {
-    rocket::Config::SetGlobalConfig("./conf/rocket.xml");
-    rocket::Logger::InitGlobalLogger();
+    rocket::Config::SetGlobalConfig(NULL);
+    rocket::Logger::InitGlobalLogger(0);
 
     // test_tcp_client();
     test_channel();
