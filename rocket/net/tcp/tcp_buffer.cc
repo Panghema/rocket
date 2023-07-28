@@ -84,7 +84,7 @@ void TcpBuffer::adjustBuffer() {
 }
 
 void TcpBuffer::moveReadIndex(int size) {
-    if (m_read_index + size >= m_buffer.size()) {
+    if ((long unsigned int)(m_read_index + size) >= m_buffer.size()) {
         ERRORLOG("moveReadIndex error, invalid size %d, old_read_size %d, buffer size %d", size, m_read_index, m_size);
         return;
     }

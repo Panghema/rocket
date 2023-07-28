@@ -3,6 +3,7 @@
 #include "rocket/common/log.h"
 
 #include "rocket/net/tcp/tcp_connection.h"
+#include "rocket/common/config.h"
 
 namespace rocket
 {
@@ -23,6 +24,9 @@ namespace rocket
         }
     }
 
+
+    // TODO:15:32处任务，把准备结束的connection设置成CLosed，定时任务定期地遍历m_client里的connection，
+    // 如果是closed状态就从m_client里删掉，反正是智能指针删掉了就自己西沟了
     void TcpServer::onAccept()
     {
         auto re = m_acceptor->accept();
@@ -49,17 +53,18 @@ namespace rocket
 
         m_main_event_loop = EventLoop::getCurrentEventLoop();
 
-        m_io_thread_group = new IOThreadGroup(2);
+        m_io_thread_group = new IOThreadGroup(rocket::Config::GetGlobalConfig()->m_io_threads);
 
         m_listen_fd_event = new FdEvent(m_acceptor->getListenFd());
 
         m_listen_fd_event->listen(FdEvent::IN_EVENT, std::bind(&TcpServer::onAccept, this), nullptr);
-        DEBUGLOG("TcpServer::init()");
+        
         m_main_event_loop->addEpollEvent(m_listen_fd_event);
     }
 
     void TcpServer::start()
     {
+        DEBUGLOG("hello");
         m_io_thread_group->start();
 
         m_main_event_loop->loop();

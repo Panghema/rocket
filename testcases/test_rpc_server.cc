@@ -18,6 +18,7 @@
 #include "rocket/net/coder/tinypb_protocol.h"
 #include "rocket/net/tcp/tcp_server.h"
 #include "rocket/net/rpc/rpc_dispatcher.h"
+
 #include "order.pb.h"
 
 class OrderImpl : public Order {

@@ -74,9 +74,9 @@ void test_channel() {
     rocket::MsgIDUtil util;
     NEWRPCCONTROLLER(controller);
     controller->SetMsgId(util.genMsgID());
-    controller->SetTimeOut(10000);
+    controller->SetTimeout(10000);
 
-    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>([request, response, channel, controller]() mutable {
+    std::shared_ptr<rocket::RpcClosure> closure = std::make_shared<rocket::RpcClosure>(nullptr, [request, response, channel, controller]() mutable {
         if (controller->GetErrorCode() == 0) {
             INFOLOG("call rpc success, request[%s], response[%s]", request->ShortDebugString().c_str(), response->ShortDebugString().c_str());
             // client自己的业务逻辑， 得到了response的xx，就xxx

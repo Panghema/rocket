@@ -47,7 +47,7 @@ public:
 
     NetAddr::s_ptr GetPeerAddr();
 
-    void SetTimeOut(int timeout);
+    void SetTimeout(int timeout);
 
     int GetTimeOut();
 

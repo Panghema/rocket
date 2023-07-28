@@ -8,7 +8,7 @@ namespace rocket {
 
 
 TcpConnection::TcpConnection(EventLoop* event_loop, int fd, int buffer_size, NetAddr::s_ptr peer_addr, NetAddr::s_ptr local_addr, TcpConnectionType type/*=TcpConnectionByServer*/) 
-    : m_event_loop(event_loop), m_peer_addr(peer_addr), m_local_addr(local_addr), m_state(NotConnected), m_fd(fd), m_connection_type(type) {
+    : m_event_loop(event_loop), m_fd(fd), m_peer_addr(peer_addr), m_local_addr(local_addr), m_connection_type(type), m_state(NotConnected) {
         m_in_buffer = std::make_shared<TcpBuffer>(buffer_size);
         m_out_buffer = std::make_shared<TcpBuffer>(buffer_size);
 
@@ -72,7 +72,7 @@ void TcpConnection::onRead() {
 
     if (is_close) {
         // 处理关闭连接 todo
-        INFOLOG("peer closed, peer addr [%s], client [%d]", m_peer_addr->toString().c_str(), m_fd); 
+        INFOLOG("peer closed, peer addr [%s], clientfd [%d]", m_peer_addr->toString().c_str(), m_fd); 
         clear();
         return; // 如果这里不return 后面又走到excute，又添加epoll event又监听了
     }

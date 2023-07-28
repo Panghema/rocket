@@ -75,7 +75,7 @@ NetAddr::s_ptr RpcController::GetPeerAddr() {
     return m_peer_addr;
 }
 
-void RpcController::SetTimeOut(int timeout) {
+void RpcController::SetTimeout(int timeout) {
     m_timeout = timeout;
 }
 
