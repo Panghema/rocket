@@ -1,9 +1,17 @@
 #ifndef ROCKET_COMMON_CONFIG_H
 #define ROCKET_COMMON_CONFIG_H
 
-#include <string>
+#include <map>
+#include <tinyxml/tinyxml.h>
+#include <rocket/net/tcp/net_addr.h>
 
 namespace rocket {
+
+struct RpcStub { // specify
+  std::string name;
+  NetAddr::s_ptr addr;
+  int timeout {2000};
+};
 
 class Config{
 public:
@@ -24,6 +32,9 @@ public:
     int m_port {0};
     int m_io_threads {0};
 
+    TiXmlDocument* m_xml_document{NULL};
+
+    std::map<std::string, RpcStub> m_rpc_stubs;
 };
 
 

@@ -33,6 +33,12 @@ public:
     typedef std::shared_ptr<google::protobuf::Message> message_s_ptr;
     typedef std::shared_ptr<google::protobuf::Closure> closure_s_ptr;
 
+ public:
+    // 获取 addr
+    // 若 str 是 ip:port, 直接返回
+    // 否则认为是 rpc 服务名，尝试从配置文件里面获取对应的 ip:port（后期会加上服务发现）
+    static NetAddr::s_ptr FindAddr(const std::string& str); // specify
+
 public:
 
 RpcChannel(NetAddr::s_ptr peer_addr);
@@ -54,7 +60,10 @@ google::protobuf::Closure* getClosure();
 
 TcpClient* getTcpClient();
 
-TimerEvent::s_ptr getTimerEvent();
+// TimerEvent::s_ptr getTimerEvent(); // specify
+
+private:
+void callBack();
 
 private:
     NetAddr::s_ptr m_peer_addr {nullptr};
@@ -69,7 +78,7 @@ private:
 
     TcpClient::s_ptr m_client {nullptr};
 
-    TimerEvent::s_ptr m_timer_event {nullptr};
+    // TimerEvent::s_ptr m_timer_event {nullptr};
 
 
 };

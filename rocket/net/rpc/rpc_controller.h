@@ -51,6 +51,9 @@ public:
 
     int GetTimeOut();
 
+    bool Finished();
+
+    void SetFinished(bool value);
 
 private:
     int32_t m_error_code {0};
@@ -59,6 +62,7 @@ private:
 
     bool m_is_failed {false};
     bool m_is_cancel {false};
+    bool m_is_finished {false};
 
     NetAddr::s_ptr m_local_addr;
     NetAddr::s_ptr m_peer_addr;

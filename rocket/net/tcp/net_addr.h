@@ -25,7 +25,8 @@ public:
 };
 
 class IPNetAddr : public NetAddr {
-
+public:
+    static bool CheckValid(const std::string& addr);
 public:
 
     IPNetAddr(const std::string& ip, uint16_t port);

@@ -62,12 +62,12 @@ Config::Config(const char* xmlfile) {
     READ_STR_FROM_XML_NODE(log_max_file_size, log_node);
     READ_STR_FROM_XML_NODE(log_sync_interval, log_node);
 
+    m_log_level = log_level_str;
     m_log_file_name = log_file_name_str;
     m_log_file_path = log_file_path_str;
     m_log_max_file_size = std::atoi(log_max_file_size_str.c_str());
     m_log_sync_interval = std::atoi(log_sync_interval_str.c_str());
 
-    m_log_level = log_level_str;
 
     printf("LOG -- CONFIG LEVEL[%s], FILE_NAME[%s], FILE_PATH[%s], MAX_FILE_SIZE[%dB], SYNC_INTERVAL[%dms]\n",
     m_log_level.c_str(), m_log_file_name.c_str(), m_log_file_path.c_str(), m_log_max_file_size, m_log_sync_interval);
@@ -78,9 +78,30 @@ Config::Config(const char* xmlfile) {
     m_port = std::atoi(port_str.c_str());
     m_io_threads = std::atoi(io_threads_str.c_str());
 
-    printf("SERVER -- CONFIG PORT[%d], IO_THREADS[%d]\n", m_port, m_io_threads);
+    // printf("SERVER -- CONFIG PORT[%d], IO_THREADS[%d]\n", m_port, m_io_threads);
+    
+    // specify
+    TiXmlElement* stubs_node = root_node->FirstChildElement("stubs"); 
+
+    if (stubs_node) {
+        for (TiXmlElement* node = stubs_node->FirstChildElement("rpc_server"); node; node = node->NextSiblingElement("rpc_server")) {
+            RpcStub stub;
+            stub.name = std::string(node->FirstChildElement("name")->GetText());
+            stub.timeout = std::atoi(node->FirstChildElement("timeout")->GetText());
+
+            std::string ip = std::string(node->FirstChildElement("ip")->GetText());
+            uint16_t port = std::atoi(node->FirstChildElement("port")->GetText());
+            stub.addr = std::make_shared<IPNetAddr>(ip, port);
+
+            m_rpc_stubs.insert(std::make_pair(stub.name, stub));
+        }
+    }
+
+
+
+    printf("Server -- PORT[%d], IO Threads[%d]\n", m_port, m_io_threads);
 
 }
 
-
 }
+
