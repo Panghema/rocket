@@ -154,6 +154,7 @@ void TcpConnection::TcpConnection::onWrite() {
         int read_index = m_out_buffer->readIndex();
 
         int rt = write(m_fd, &(m_out_buffer->m_buffer[read_index]), write_size);
+        DEBUGLOG("%s", m_out_buffer->m_buffer);
         if (rt >= write_size) {
             DEBUGLOG("no data need to be sent to client [%s]", m_peer_addr->toString().c_str());
             is_write_all = true;
