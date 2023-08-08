@@ -50,7 +50,6 @@ std::string formatString(const char* str, Args&&... args) {
     rocket::formatString(str, ##__VA_ARGS__) + "\n"); \
     } \
 
-
 #define APPDEBUGLOG(str, ...) \
     if (rocket::Logger::GetGlobalLogger()->getLogLevel() <= rocket::Debug) \
     { \
@@ -74,7 +73,6 @@ std::string formatString(const char* str, Args&&... args) {
     "[" + std::string(__FILE__) + ":" + std::to_string(__LINE__) + "]\t" + \
     rocket::formatString(str, ##__VA_ARGS__) + "\n"); \
     } \
-
 
 
 
@@ -112,8 +110,6 @@ private:
     int m_thread_id; // 线程号
 
     LogLevel m_level;
-
-
 };
 
 
